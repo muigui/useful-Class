@@ -1,0 +1,34 @@
+{
+	"author"          : {
+		"name"        : "constantology",
+		"email"       : "christos@muigui.com",
+		"url"         : "http://muigui.com"
+	},
+	"description"     : "useful Classical inheritance scaffolding, including singletons and easy to use mixin functionality",
+ 	"dependencies"    : {
+		"useful-util" : "*"
+	},
+ 	"devDependencies" : {
+		"chai"        : "*",
+		"mocha"       : "*",
+		"useful-type" : "*"
+ 	},
+ 	"engines"         : {
+ 		"node"        : ">= 0.8.x"
+ 	},
+	"keywords"        : ["class", "classical inheritance", "javascript", "object-oriented", "programming"],
+	"licenses"        : [ {
+		"type"        : "MIT",
+		"url"         : "https://raw.github.com/muigui/useful-Class/master/LICENSE"
+	} ],
+	"main"            : "./index.js",
+	"name"            : "useful-Class",
+	"repository"      : {
+		"type"        : "git",
+		"url"         : "git@github.com:muigui/useful-Class.git"
+	},
+	"scripts"         : {
+		"test"        : "mocha -c --ignore-leaks -R spec -u tdd ./test/runner.js"
+	},
+	"version"         : "0.0.1"
+}

@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>muigui/useful-Class</title>
+		<link href="../node_modules/mocha/mocha.css" rel="stylesheet" type="text/css">
+	</head>
+	<body>
+		<div id="mocha"></div>
+
+		<script src="../node_modules/mocha/mocha.js" type="text/javascript"></script>
+		<script src="../node_modules/chai/chai.js"   type="text/javascript"></script>
+
+		<script type="text/javascript">
+			mocha.setup( {
+				ignoreLeaks : true,
+				ui          : 'tdd'
+			} );
+		</script>
+
+		<script src="../build/build.js" type="text/javascript"></script>
+
+		<script type="text/javascript">
+			var Class  = require( 'useful-Class' ),
+//				type   = require( 'useful-type' ),
+				util   = require( 'useful-util' ),
+
+				expect = chai.expect;
+		</script>
+
+		<script src="Class.test.js"     type="text/javascript"></script>
+
+		<script type="text/javascript">
+			mocha.run();
+		</script>
+	</body>
+</html>
