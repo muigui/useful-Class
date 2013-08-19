@@ -11,7 +11,7 @@
 
   Install with npm:
 
-    $ npm install useful-util
+    $ npm install useful-Class
 
 ## API
 
