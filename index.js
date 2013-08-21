@@ -242,7 +242,7 @@
 
 			delete this.__processing__;
 
-			return this.__chain__ !== false && return_value === UNDEF ? this : return_value;
+			return return_value === UNDEF ? this : return_value;
 		}
 
 		var Constructor,

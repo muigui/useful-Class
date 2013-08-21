@@ -22,7 +22,7 @@
 		"url"         : "https://raw.github.com/muigui/useful-Class/master/LICENSE"
 	} ],
 	"main"            : "./index.js",
-	"name"            : "useful-Class",
+	"name"            : "useful-class",
 	"repository"      : {
 		"type"        : "git",
 		"url"         : "git@github.com:muigui/useful-Class.git"
@@ -30,5 +30,5 @@
 	"scripts"         : {
 		"test"        : "mocha -c --ignore-leaks -R spec -u tdd ./test/runner.js"
 	},
-	"version"         : "0.0.1"
+	"version"         : "0.0.2"
 }
