@@ -73,11 +73,14 @@
 		if ( classname ) {
 			path               = classname.split( '.' );
 			ClassName          = path.pop();
-			Package            = util.bless( path, module );
 
+			if ( module && module !== util.global )
+				path.shift();
+
+			Package            = util.bless( path, module );
 			Package[ClassName] = NewClass;
 
-			Constructor               = singleton ? NewClass.constructor : NewClass;
+			Constructor        = singleton ? NewClass.constructor : NewClass;
 			cache[cachename]   = cache[Constructor.__guid__];
 
 			Object.defineProperty( Constructor, '__classname__', {

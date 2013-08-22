@@ -58,7 +58,7 @@ suite( 'muigui/useful-Class', function() {
 		instance_03 = Class_03.new.call( this, 'hello world!' ),
 		instance_04 = Class_04.new.apply( this, ['hello world!'] ),
 // base namespace for test classes
-		path        = mod.path;
+		path        = mod;
 
 	Class.define( 'path.to.Singleton_01', {
 		constructor : function() { this.parent( 'singleton_01: hello world!' ); },

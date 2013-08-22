@@ -14,5 +14,5 @@
 	"name"         : "useful-Class",
 	"repo"         : "muigui/useful-Class",
 	"scripts"      : ["index.js"],
-	"version"      : "0.0.2"
+	"version"      : "0.0.3"
 }
