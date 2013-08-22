@@ -6,12 +6,12 @@
 	},
 	"description"     : "useful Classical inheritance scaffolding, including singletons and easy to use mixin functionality",
  	"dependencies"    : {
-		"useful-util" : "*"
+		"useful-util" : "latest"
 	},
  	"devDependencies" : {
-		"chai"        : "*",
-		"mocha"       : "*",
-		"useful-type" : "*"
+		"chai"        : "latest",
+		"mocha"       : "latest",
+		"useful-type" : "latest"
  	},
  	"engines"         : {
  		"node"        : ">= 0.8.x"

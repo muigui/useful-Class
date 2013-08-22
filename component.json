@@ -1,18 +1,26 @@
 {
-	"dependencies" : {
-		"muigui/useful-util" : "*"
-	},
-	"description"  : "useful Classical inheritance scaffolding, including singletons and easy to use mixin functionality",
-	"development"  : {
-		"chaijs/chai"        : "*",
-		"visionmedia/mocha"  : "*",
-		"muigui/useful-type" : "*"
-	},
-	"keywords"     : ["class", "classical inheritance", "javascript", "object-oriented", "programming"],
-	"license"      : "MIT",
-	"main"         : "index.js",
-	"name"         : "useful-Class",
-	"repo"         : "muigui/useful-Class",
-	"scripts"      : ["index.js"],
-	"version"      : "0.0.3"
+  "dependencies": {
+    "muigui/useful-util": "latest"
+  },
+  "description": "useful Classical inheritance scaffolding, including singletons and easy to use mixin functionality",
+  "development": {
+    "chaijs/chai": "latest",
+    "visionmedia/mocha": "latest",
+    "muigui/useful-type": "latest"
+  },
+  "keywords": [
+    "class",
+    "classical inheritance",
+    "javascript",
+    "object-oriented",
+    "programming"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "name": "useful-Class",
+  "repo": "muigui/useful-Class",
+  "scripts": [
+    "index.js"
+  ],
+  "version": "0.0.3"
 }
