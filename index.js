@@ -4,7 +4,7 @@
 		cache               = {
 			__empty__      : { after : null, before : null, class : null, mixins : null, proto : null }
 		},
-		configuration_props = 'afterdefine beforeinstance chain constructor extend mixins singleton statics'.split( ' ' ),
+		configuration_props = 'accessors afterdefine beforeinstance chain constructor extend mixins singleton statics'.split( ' ' ),
 		internal_methods    = util.copy( Object.create( null ), {
 			__override__   : { enumerable   : false, value      : override_instance_method },
 			mixin          : { enumerable   : false, value      : mixin },
@@ -271,6 +271,7 @@
 
 		register( decorate( Class ) );
 
+		make_accessors( proto, defaults.accessors );
 		make_mixinable( Class, defaults.mixins );
 		make_processable( Class, defaults.afterdefine, defaults.beforeinstance );
 
@@ -279,6 +280,24 @@
 		process_after( Class );
 
 		return Class;
+	}
+
+	function make_accessors( proto, accessors ) {
+		if ( !accessors || typeof accessors !== 'object' )
+			return;
+
+		var default_config = { configurable : false, enumerable : false },
+			accessor, name;
+
+		for ( name in accessors ) {
+			if ( Object.prototype.hasOwnProperty.call( accessors, name ) ) {
+				accessor = accessors[name];
+				if ( accessor && typeof accessor === 'object' ) {
+					delete accessors[name].writable;
+					Object.defineProperty( proto, name, util.copy( accessors[name], default_config, true ) );
+				}
+			}
+		}
 	}
 
  // we're making a new version of the descriptor to a clean "empty" Object

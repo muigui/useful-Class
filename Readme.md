@@ -32,7 +32,8 @@ The descriptor has the following **reserved** property names:
 	<tbody>
 		<tr><td width="128">constructor</td><td width="96">Function</td><td>This Class' constructor. This is the method that is called when you do: <code>new Foo</code>.</td></tr>
 		<tr><td>extend</td><td>Function|String</td><td><strong>OPTIONAL</strong>. If you want to inherit the properties and methods from an existing Class you reference the Class here.</td></tr>
-		<tr><td>mixin</td><td>Object</td><td><strong>OPTIONAL</strong>. An Object of properties and methods to mix into the Class' prototype.</td></tr>
+		<tr><td>accessors</td><td>Object</td><td><strong>OPTIONAL</strong>. Each property in the <code>accessors</code> Object should have an Object with either a <code>get</code> method, a <code>set</code> method, or both. These will be added to the Class' prototype, using <code>Object.defineProperty</code></td></tr>
+		<tr><td>mixins</td><td>Object</td><td><strong>OPTIONAL</strong>. An Object of properties and methods to mix into the Class' prototype.</td></tr>
 		<tr><td>module</td><td>Object</td><td><strong>OPTIONAL</strong>. If you don't want the Class namespace to be created on the global context, then pass the Object to assign the class namespace to, e.g. a component or npm <code>module</code>.</td></tr>
 		<tr><td>chain</td><td>Boolean</td><td><strong>OPTIONAL</strong>. Unless this is set explicitly to <code>false</code>, the Class instance will return its context – <code>this</code> – Object whenever an instance method of a Class returns <code>undefined</code>.</td></tr>
 		<tr><td>singleton</td><td>Mixed</td><td><strong>OPTIONAL</strong>. Whether or not this Class is a <a href="http://en.wikipedia.org/wiki/Singleton_pattern">Singleton</a>.<br />

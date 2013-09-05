@@ -222,15 +222,64 @@ suite( 'muigui/useful-Class', function() {
 			done();
 		} );
 
-//		test( 'type checking', function( done ) {
-//			expect( type( instance_01 ) ).to.eql( 'loremipsum' );
-//			expect( type( instance_02 ) ).to.eql( 'path.to.Class_02' );
-//			expect( type( instance_03 ) ).to.eql( 'Class_03' );
-//			expect( type( path.to.Singleton_01 ) ).to.eql( 'path.to.Singleton_01' );
-//			expect( type( instance_04 ) ).to.eql( 'class_04' );
-//
-//			done();
-//		} );
+		test( 'accessors', function( done ) {
+			var Accessors = Class( {
+					accessors : {
+						foo   : {
+							get : function() {
+								return this._foo;
+							},
+							set : function( value ) {
+								return this._foo = value;
+							}
+						},
+						bar   : {
+							get : function() {
+								return this.foo;
+							},
+							set : function( value ) {
+								return this.foo;
+							}
+						},
+						bam   : {
+							get : function() {
+								return 'BAM!!!';
+							}
+						},
+						baz   : {
+							set : function( value ) {
+								return this.foo = value;
+							}
+						}
+					},
+					_foo      : null
+				} ),
+				accessors = new Accessors();
+
+			expect( accessors._foo ).to.equal( null );
+			expect( accessors.foo ).to.equal( null );
+
+			accessors.foo = 'foo';
+
+			expect( accessors.foo ).to.equal( 'foo' );
+			expect( accessors._foo ).to.equal( 'foo' );
+			expect( accessors.bar ).to.equal( 'foo' );
+
+			expect( accessors.bar = 'bar' ).to.equal( 'bar' );
+			expect( accessors.bar ).to.equal( 'foo' );
+			expect( accessors._foo ).to.equal( 'foo' );
+
+			expect( accessors.bam ).to.equal( 'BAM!!!' );
+			expect( accessors.bam = 'BOOH!!!' ).to.equal( 'BOOH!!!' );
+			expect( accessors.bam ).to.equal( 'BAM!!!' );
+
+			expect( accessors.baz ).to.equal( undefined );
+			accessors.baz = 'bazooka tooth';
+			expect( accessors.baz ).to.equal( undefined );
+			expect( accessors._foo ).to.equal( 'bazooka tooth' );
+
+			done();
+		} );
 	} );
 
 	suite( 'pre/post processing', function() {
