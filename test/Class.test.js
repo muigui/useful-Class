@@ -567,4 +567,33 @@ suite( 'muigui/useful-Class', function() {
 			done();
 		} );
 	} );
+
+	suite( 'extending from "classes" not created with `Class`', function() {
+		test( 'chaining', function( done ) {
+			function Foo() {
+				this.foo = 'foo';
+			}
+			Foo.prototype = {
+				constructor : Foo,
+				getFoo      : function() {
+					return this.foo;
+				}
+			};
+
+			var Bar = Class( {
+					constructor : function() {
+						expect( this.parent() ).to.equal( this );
+					},
+					extend      : Foo,
+					getFoo      : function() {
+						return this.parent();
+					}
+				} ),
+				bar = new Bar();
+
+			expect( bar.getFoo() ).to.equal( 'foo' );
+
+			done();
+		} );
+	} );
 } );

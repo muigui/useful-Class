@@ -317,6 +317,18 @@
 	}
 
 	function make_method( super_name, method_name, method, super_method ) {
+		var original_super_method;
+
+// unfortunatley, in order to chain with "Classes" not created using the `useful-Class` factory, we need to make sure `super_method` is always wrapped.
+		if ( typeof super_method === 'function' && super_method === super_method.valueOf() ) {
+			original_super_method = super_method;
+			super_method          = function() {
+				var return_value  = original_super_method.apply( this, arguments );
+
+				return this.__chain__ === false || return_value !== UNDEF ? return_value : this;
+			};
+		}
+
 		function Class_instance_method() {
 			var args,
 				previous_method = this.__method__,
