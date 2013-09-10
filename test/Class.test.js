@@ -39,11 +39,10 @@ suite( 'muigui/useful-Class', function() {
 				bam     : function() { return 'bambam'; }
 			}
 		} ),
-		Class_04    = Class( {
+		Class_04    = Class_03.extend( {
 			constructor : function Class_04( greeting ) {
 				this.parent( 'class_04: ' + greeting );
 			},
-			extend      : Class_03,
 			getNum      : function() {
 				return this.parent();
 			},

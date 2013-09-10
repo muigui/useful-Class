@@ -92,6 +92,15 @@
 		return NewClass;
 	}
 
+	function extend( descriptor ) {
+		if ( !descriptor || typeof descriptor !== 'object' )
+			descriptor = Object.create( null );
+
+		descriptor.extend = this;
+
+		return Class( descriptor );
+	}
+
 	function get( classname ) {
 		return typeof classname === 'function' ? classname : ( cache[String( classname ).toLowerCase()] || cache.__empty__ ).class;
 	}
@@ -212,6 +221,7 @@
 
 	function decorate( Class ) {
 		Class.create   = Class.new = create_instance.bind( Class );
+		Class.extend   = extend.bind( Class );
 		Class.mixin    = mixin_add.bind( Class );
 		Class.override = override.bind( Class );
 
