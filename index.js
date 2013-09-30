@@ -1,11 +1,13 @@
-	var util                = require( 'useful-util' ),
+	var copy                = require( 'useful-copy' ),
+		util                = require( 'useful-util' ),
+		value               = require( 'useful-value' ),
 
 		UNDEF,
 		cache               = {
 			__empty__      : { after : null, before : null, class : null, mixins : null, proto : null }
 		},
 		configuration_props = 'accessors afterdefine beforeinstance chain constructor extend mixins singleton statics'.split( ' ' ),
-		internal_methods    = util.copy( Object.create( null ), {
+		internal_methods    = copy( Object.create( null ), {
 			__override__   : { enumerable   : false, value      : override_instance_method },
 			mixin          : { enumerable   : false, value      : mixin },
 			original       : { configurable : true,  enumerable : false, value : util.noop, writable : true },
@@ -77,7 +79,7 @@
 			if ( module && module !== util.global )
 				path.shift();
 
-			Package            = util.bless( path, module );
+			Package            = value.bless( path, module );
 			Package[ClassName] = NewClass;
 
 			Constructor        = singleton ? NewClass.constructor : NewClass;
@@ -211,10 +213,10 @@
 // class construction methods
 	function add_statics( Class, statics ) {
 		if ( statics && typeof statics === 'object' )
-			util.copy( Class, statics, true );
+			copy( Class, statics, true );
 
 		if ( Class.__super__ )
-			util.copy( Class, Class.__super__, true );
+			copy( Class, Class.__super__, true );
 
 		return Class;
 	}
@@ -304,7 +306,7 @@
 				accessor = accessors[name];
 				if ( accessor && typeof accessor === 'object' ) {
 					delete accessors[name].writable;
-					Object.defineProperty( proto, name, util.copy( accessors[name], default_config, true ) );
+					Object.defineProperty( proto, name, copy( accessors[name], default_config, true ) );
 				}
 			}
 		}
@@ -312,7 +314,7 @@
 
  // we're making a new version of the descriptor to a clean "empty" Object
 	function make_config( descriptor ) {
-		var config      = util.merge( Object.create( null ), descriptor ),
+		var config      = copy.merge( Object.create( null ), descriptor ),
 			super_class = config.extend;
 
 		if ( typeof super_class === 'string' )

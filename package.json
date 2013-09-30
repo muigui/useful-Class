@@ -6,12 +6,17 @@
 	},
 	"description"     : "useful Classical inheritance scaffolding, including singletons and easy to use mixin functionality",
  	"dependencies"    : {
-		"useful-util" : "latest"
+		"useful-copy"  : "latest",
+		"useful-util"  : "latest",
+		"useful-value" : "latest"
 	},
  	"devDependencies" : {
-		"chai"        : "latest",
-		"mocha"       : "latest",
-		"useful-type" : "latest"
+		"chai"                 : "latest",
+		"mocha"                : "latest",
+		"grunt-contrib-concat" : "latest",
+		"grunt-contrib-uglify" : "latest",
+		"grunt-contrib-watch"  : "latest",
+		"useful-type"          : "latest"
  	},
  	"engines"         : {
  		"node"        : ">= 0.8.x"
@@ -30,5 +35,5 @@
 	"scripts"         : {
 		"test"        : "mocha -c --ignore-leaks -R spec -u tdd ./test/runner.js"
 	},
-	"version"         : "0.0.7"
+	"version"         : "0.0.8"
 }
