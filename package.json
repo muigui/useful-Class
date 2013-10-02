@@ -6,9 +6,10 @@
 	},
 	"description"     : "useful Classical inheritance scaffolding, including singletons and easy to use mixin functionality",
  	"dependencies"    : {
-		"useful-copy"  : "latest",
-		"useful-util"  : "latest",
-		"useful-value" : "latest"
+		"useful-copy"    : "latest",
+		"useful-iter"    : "latest",
+		"useful-string"  : "latest",
+		"useful-value"   : "latest"
 	},
  	"devDependencies" : {
 		"chai"                 : "latest",
@@ -35,5 +36,5 @@
 	"scripts"         : {
 		"test"        : "mocha -c --ignore-leaks -R spec -u tdd ./test/runner.js"
 	},
-	"version"         : "0.0.8"
+	"version"         : "0.0.9"
 }

@@ -1,7 +1,8 @@
 {
   "dependencies": {
     "muigui/useful-copy": "latest",
-    "muigui/useful-util": "latest",
+    "muigui/useful-iter": "latest",
+    "muigui/useful-string": "latest",
     "muigui/useful-value": "latest"
   },
   "description": "useful Classical inheritance scaffolding, including singletons and easy to use mixin functionality",
@@ -24,6 +25,6 @@
   "scripts": [
     "index.js"
   ],
-  "version": "0.0.8",
+  "version": "0.0.9",
   "remotes": []
 }

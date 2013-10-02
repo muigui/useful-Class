@@ -1,5 +1,6 @@
 	var copy                = require( 'useful-copy' ),
-		util                = require( 'useful-util' ),
+		iter                = require( 'useful-iter' ),
+		string              = require( 'useful-string' ),
 		value               = require( 'useful-value' ),
 
 		UNDEF,
@@ -10,10 +11,11 @@
 		internal_methods    = copy( Object.create( null ), {
 			__override__   : { enumerable   : false, value      : override_instance_method },
 			mixin          : { enumerable   : false, value      : mixin },
-			original       : { configurable : true,  enumerable : false, value : util.noop, writable : true },
-			parent         : { configurable : true,  enumerable : false, value : util.noop, writable : true }
+			original       : { configurable : true,  enumerable : false, value : noop, writable : true },
+			parent         : { configurable : true,  enumerable : false, value : noop, writable : true }
 		} ),
-		re_invalid_chars    = /[^A-Za-z0-9_\.$<>\[\]\{\}]/g;
+		re_invalid_chars    = /[^A-Za-z0-9_\.$<>\[\]\{\}]/g,
+		root                = typeof global == 'undefined' ? window : global;
 
 // expose
 	Class.create   = Class.new = create;
@@ -65,10 +67,10 @@
 			throw new Error( 'class `' + classname + '` already exists.', 'cannot overwrite existing class.' );
 
 		var ClassName, Constructor, NewClass, Package, cachename,
-			module    = descriptor.module || util.global, path,
+			module    = descriptor.module || root, path,
 			singleton = !!descriptor.singleton;
 
-		util.remove( descriptor, ['__classname__', 'classname', 'module'] );
+		iter.remove( descriptor, ['__classname__', 'classname', 'module'] );
 
 		NewClass = Class( descriptor );
 
@@ -76,7 +78,7 @@
 			path               = classname.split( '.' );
 			ClassName          = path.pop();
 
-			if ( module && module !== util.global )
+			if ( module && module !== this )
 				path.shift();
 
 			Package            = value.bless( path, module );
@@ -242,7 +244,7 @@
 
 	function make_class( descriptor ) {
 		function Class() {
-			if ( !this || this === util.global )
+			if ( !this || this === root )
 				return create_instance.apply( Class, arguments );
 
 			if ( singleton( this.constructor ) )
@@ -344,11 +346,11 @@
 		function Class_instance_method() {
 			var args,
 				previous_method = this.__method__,
-				previous_super  = this[super_name] || util.noop,
+				previous_super  = this[super_name] || noop,
 				return_value,
 				update_method   = !( previous_method in internal_methods || method_name in internal_methods );
 
-			this[super_name]    = super_method || util.noop;
+			this[super_name]    = super_method || noop;
 
 			if ( update_method )
 				this.__method__ = method_name;
@@ -456,7 +458,7 @@
 	}
 
 	function register( Class ) {
-		var guid    = util.guid();
+		var guid    = string.guid();
 		cache[guid] = { class : Class };
 
 		Object.defineProperty( Class, '__guid__', {
@@ -481,6 +483,8 @@
 
 		return args;
 	}
+
+	function noop() {}
 
 	function process_after( Class ) {
 		if ( Class.__processed__ !== true ) {

@@ -483,6 +483,8 @@ suite( 'muigui/useful-Class', function() {
 
 	suite( 'mixins', function() {
 		test( 'basic functionality', function( done ) {
+			function noop() {}
+
 			var expected_object      = { num : 250 },
 				instance,
 				mixintest_ctor_called  = false,
@@ -505,7 +507,7 @@ suite( 'muigui/useful-Class', function() {
 				module        : mod,
 				bar           : function( arg1, arg2, arg3 ) {
 					expect( arg1 ).to.equal( 'foo' );
-					expect( arg2 ).to.equal( util.noop );
+					expect( arg2 ).to.equal( noop );
 					expect( arg3 ).to.equal( expected_object );
 
 					this.mixin( 'mixintest', arguments );
@@ -516,7 +518,7 @@ suite( 'muigui/useful-Class', function() {
 
 			expect( mixintest_ctor_called ).to.be.true;
 
-			instance.bar( 'foo', util.noop, expected_object );
+			instance.bar( 'foo', noop, expected_object );
 
 			expect( mixintest_mixin_called ).to.be.true;
 
